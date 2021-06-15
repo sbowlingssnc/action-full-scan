@@ -35,7 +35,7 @@ async function run() {
         }
 
         await exec.exec(`docker pull ${docker_name} -q`);
-        let command = (`docker run --user root -v ${workspace}:/zap/wrk/:rw --network="host" ` +
+        let command = (`docker run -e http_proxy='http://proxy.dstcorp.net:9119' -e https_proxy='http://proxy.dstcorp.net:9119' -e no_proxy='.dstcorp.net,.ssnc.global,ssnc-portal.cloud,.ssnc-corp.cloud,.ssnc.cloud' --user root -v ${workspace}:/zap/wrk/:rw --network="host" ` +
             `-t ${docker_name} zap-full-scan.py -t ${target} -J ${jsonReportName} -w ${mdReportName}  -r ${htmlReportName} ${cmdOptions}`);
 
         if (plugins.length !== 0) {
