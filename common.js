@@ -138,8 +138,10 @@ let actionCommon = {
             return;
         }
 
+        
         let runnerInfo = `RunnerID:${currentRunnerID}`;
-        let runnerLink = `View the [following link](https://github.com/${owner}/${repo}/actions/runs/${currentRunnerID})` +
+        
+        let runnerLink = `View the [following link](${context.serverUrl}/${owner}/${repo}/actions/runs/${currentRunnerID})` +
             ` to download the report.`;
         if (create_new_issue) {
 
